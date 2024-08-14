@@ -1,33 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AllEmployees from './AllEmployees';
+import TaskPage from './TaskPage';
+import ProfilePage from './ProfilePage'; 
+import companyLogo from './tejas.png';
+import lbtn from './logout.png';
+
+const Notification = ({ message }) => (
+  <div className="notification">
+    <p>{message}</p>
+  </div>
+);
 
 const MainPage = () => {
-  const [employees, setEmployees] = useState([]);
+  const [currentView, setCurrentView] = useState('task');
+  const [userName, setUserName] = useState('');
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:8080/employees/all')
-      .then((response) => response.json())
-      .then((data) => setEmployees(data))
-      .catch((error) => console.error('Error fetching employees:', error));
+    const storedName = localStorage.getItem('name');
+    if (storedName) {
+      setUserName(storedName);
+      setShowNotification(true);
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('name');
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('employeeId');
+    localStorage.removeItem('role');
+    window.location.reload();
+  };
+
+  const handleLogoClick = () => {
+    if(currentView==='profile'){
+      setCurrentView("task");
+    }else{
+      setCurrentView("profile")
+    }
+  };
+
   return (
-    <div className="main-page">
-      <h2 className="main-page-title">Employees</h2>
-      <div className="employee-cards-container">
-        {employees.map((employee) => (
-          <div key={employee.employeeId} className="employee-card">
-            <h3 className="employee-name">{employee.name}</h3>
-            <p className="employee-email">Email: {employee.email}</p>
-            <p className="employee-phone">Phone: {employee.phoneNumber}</p>
-            <p className="employee-department">Department: {employee.department}</p>
-            <p className="employee-role">Role: {employee.role}</p>
-            {employee.reportsTo && (
-              <p className="employee-reports-to">
-                Reports to: {employee.reportsTo.name}
-              </p>
-            )}
+    <div className="main-container">
+      {showNotification && <Notification message={`Welcome, ${userName}!`} />}
+      <nav className="navbar">
+        <div className="nav-brand">
+          <div className="logo" onClick={handleLogoClick}>
+            <img src={companyLogo} alt="Company Logo" />
           </div>
-        ))}
+          <h1 className="nav-heading">Employee Maintenance & Reporting System</h1>
+        </div>
+        <ul className="nav-links">
+          <li
+            className={currentView === 'task' ? 'active' : ''}
+            onClick={() => setCurrentView('task')}
+          >
+            Tasks
+          </li>
+          <li
+            className={currentView === 'allEmployees' ? 'active' : ''}
+            onClick={() => setCurrentView('allEmployees')}
+          >
+            Employees
+          </li>
+          <li className="logout-btn" onClick={handleLogout}>
+            <img src={lbtn} alt="Logout" />
+          </li>
+        </ul>
+      </nav>
+      <div className="content">
+        {currentView === 'task' && <TaskPage />}
+        {currentView === 'allEmployees' && <AllEmployees />}
+        {currentView === 'profile' && <ProfilePage />}
       </div>
     </div>
   );

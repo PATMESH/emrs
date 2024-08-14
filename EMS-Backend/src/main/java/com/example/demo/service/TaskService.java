@@ -50,5 +50,13 @@ public class TaskService {
 //        performance.setTasksCompleted(performance.getTasksCompleted() + 1);
 //        performanceRepository.save(performance);
     }
+    
+    public Task updateTaskStatus(int taskId, String newStatus) {
+        Task task = taskRepository.findById(taskId)
+            .orElseThrow(() -> new RuntimeException("Task not found"));
+        
+        task.setStatus(newStatus);
+        return taskRepository.save(task);
+    }
 }
 

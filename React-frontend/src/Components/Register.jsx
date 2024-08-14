@@ -20,7 +20,6 @@ const Register = ({ setAuth , setIsRegister }) => {
   }, []);
 
   useEffect(() => {
-    // Check if all fields are filled
     if (
       name &&
       email &&
@@ -61,7 +60,7 @@ const Register = ({ setAuth , setIsRegister }) => {
 
       if (response.ok) {
         console.log("Employee registered successfully!");
-        setIsRegister(true);
+        setIsRegister(false);
       } else {
         console.error("Failed to register employee");
       }

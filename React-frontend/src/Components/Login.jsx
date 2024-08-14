@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Login = ({ setAuth , setIsRegister }) => {
+const Login = ({ setAuth, setIsRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -34,9 +34,12 @@ const Login = ({ setAuth , setIsRegister }) => {
 
       if (response.ok) {
         const data = await response.json();
-        const token = data.token;
+        const { token, employeeId, userType, name } = data;
 
         localStorage.setItem("auth-token", token);
+        localStorage.setItem("employeeId", employeeId);
+        localStorage.setItem('role' , userType);
+        localStorage.setItem('name' , name);
 
         setAuth({
           authenticated: true,
@@ -58,6 +61,8 @@ const Login = ({ setAuth , setIsRegister }) => {
   };
 
   return (
+
+    <div className="login-home">
     <div className="login-container">
       <h3>Login</h3>
       <form onSubmit={handleSubmit}>
@@ -98,6 +103,7 @@ const Login = ({ setAuth , setIsRegister }) => {
           Register
         </button>
       </div>
+    </div>
     </div>
   );
 };
