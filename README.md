@@ -146,16 +146,3 @@ spring.mail.username=your-email@example.com
 spring.mail.password=your-email-password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
-
-
-Authentication and Authorization
-
-    The system uses Spring Security for user authentication and role-based access control.
-    Employees and managers must log in to access the system.
-
-Contributing
-
-Feel free to fork this repository and submit pull requests. Contributions are welcome to improve the system's features and functionality.
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
