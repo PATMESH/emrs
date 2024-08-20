@@ -39,6 +39,15 @@ public class EmployeeService {
     	return employeeRepository.findById(id).orElse(null);
     }
     
+    public Employee getEmployeeByEmail(String email) {
+        List<Employee> employees = employeeRepository.findByEmail(email);
+        if (employees.isEmpty()) {
+            return null;
+        }
+        return employees.get(0);
+    }
+
+    
     public List<Employee> getEmployeeOrg(int id) {
     	Employee e = employeeRepository.findById(id).orElse(null);
     	return employeeRepository.findByReportsTo(e);

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.service.AttendanceService;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -27,9 +28,20 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    
+    @Autowired
+    private AttendanceService attendanceService;
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
+        Employee existingEmployee = employeeService.getEmployeeByEmail(employee.getEmail());
+
+        if (existingEmployee != null) {
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Email already exists");
+        }
+
         Employee savedEmployee = employeeService.saveEmployee(employee);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
@@ -84,11 +96,14 @@ public class EmployeeController {
             userType = "Manager";
         }
         
-        Map<String, Object> response = new HashMap(); 
+        Map<String, Object> response = new HashMap<>(); 
         response.put("token", token);
         response.put("name", user.getName());
         response.put("employeeId", user.getEmployeeId());  
         response.put("userType", userType);
+
+        
+        attendanceService.markAttendance(user.getEmployeeId());
 
         return ResponseEntity.ok(response);
     }

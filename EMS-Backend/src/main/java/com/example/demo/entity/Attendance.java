@@ -28,9 +28,6 @@ public class Attendance {
 
     private LocalDateTime loginTime;
 
-    private LocalDateTime logoutTime;
-
-    private Duration totalTimeLogged;
 
     public int getAttendanceId() {
         return attendanceId;
@@ -64,19 +61,4 @@ public class Attendance {
         this.loginTime = loginTime;
     }
 
-    public LocalDateTime getLogoutTime() {
-        return logoutTime;
-    }
-
-    public void setLogoutTime(LocalDateTime logoutTime) {
-        this.logoutTime = logoutTime;
-    }
-
-    public Duration getTotalTimeLogged() {
-        return totalTimeLogged;
-    }
-
-    public void setTotalTimeLogged(Duration totalTimeLogged) {
-        this.totalTimeLogged = totalTimeLogged;
-    }
 }

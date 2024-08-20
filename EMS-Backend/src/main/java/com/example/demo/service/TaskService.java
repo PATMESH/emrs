@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import com.example.demo.repo.EmployeeRepository;
 import com.example.demo.repo.PerformanceRepository;
 import com.example.demo.repo.TaskRepository;
 
+import jakarta.mail.MessagingException;
+
 @Service
 public class TaskService {
 
@@ -24,8 +25,12 @@ public class TaskService {
 
     @Autowired
     private PerformanceRepository performanceRepository;
+    
+    @Autowired
+    private EmailService emailService;
 
-    public Task assignTask(Task task) {
+    public Task assignTask(Task task) throws MessagingException{
+    	emailService.sendEmailToEmployee(task.getAssignedTo().getEmail(), task.getAssignedTo().getName(), task.getTaskName(), task.getAssignedBy().getName());
         return taskRepository.save(task);
     }
 

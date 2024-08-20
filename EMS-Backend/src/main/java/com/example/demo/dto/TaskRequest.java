@@ -1,35 +1,19 @@
-package com.example.demo.entity;
-
-import jakarta.persistence.ManyToOne;
+package com.example.demo.dto;
 
 import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "task")
-public class Task {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int taskId;
+public class TaskRequest {
+	
+	private int taskId;
 
     private String taskName;
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "assigned_to_id")
-    private Employee assignedTo; 
-
-    @ManyToOne
-    @JoinColumn(name = "assigned_by")
-    private Employee assignedBy;
+    private int assignedTo; 
+    
+    private int assignedBy;
 
     private Date startDate;
 
@@ -61,19 +45,19 @@ public class Task {
 		this.description = description;
 	}
 
-	public Employee getAssignedTo() {
+	public int getAssignedTo() {
 		return assignedTo;
 	}
 
-	public void setAssignedTo(Employee assignedTo) {
+	public void setAssignedTo(int assignedTo) {
 		this.assignedTo = assignedTo;
 	}
 
-	public Employee getAssignedBy() {
+	public int getAssignedBy() {
 		return assignedBy;
 	}
 
-	public void setAssignedBy(Employee assignedBy) {
+	public void setAssignedBy(int assignedBy) {
 		this.assignedBy = assignedBy;
 	}
 
@@ -100,6 +84,6 @@ public class Task {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+    
+    
 }
-
