@@ -6,7 +6,7 @@ const MainPage = lazy(() => import("./Components/MainPage"));
 
 const LoadingSpinner = () => (
   <div className="loading-spinner-container">
-    <div className="loading-spinner"></div>
+    <div className="loading-spinner"></div> 
   </div>
 );
 

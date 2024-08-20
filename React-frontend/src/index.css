@@ -9,14 +9,14 @@ body {
 
 
 body{
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", Sans-serif;
   background-color: #f4f7f6;
 }
 
  /* -----------Login.css-------------- */
 
  .login-home {
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", Sans-serif;
   background-color: #f4f7f6;
   height: 100vh;
   margin: 0;
@@ -120,7 +120,7 @@ body{
 
 
 .reg-body{
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", Sans-serif;
   background-color: #f4f4f9;
   display: flex;
   justify-content: center;
@@ -275,11 +275,11 @@ body{
 }
 
 .employee-name {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #3498db;
-  border-bottom: 2px solid #3498db;
+  color: #7671b4;
+  border-bottom: 2px solid #7671b4;
   padding-bottom: 10px;
 }
 
@@ -408,7 +408,7 @@ body{
 /* ---------navbar.css-------------- */
 
 .main-container {
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat", Sans-serif;
   max-width: 96%;
   margin: 0 auto;
   padding: 16px;
@@ -437,8 +437,11 @@ body{
 }
 
 .nav-heading {
-  color: #9c4dcc;
-  font-size: 1.5rem;
+  /* color: #9c4dcc; */
+  color: whitesmoke;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Montserrat", Sans-serif;
   margin: 0;
 }
 
@@ -524,7 +527,7 @@ body{
 /* -----------Task.css---------------- */
 
 :root {
-  --primary-color: #3498db;
+  --primary-color: #7e78ce;
   --secondary-color: #2ecc71;
   --accent-color: #e74c3c;
   --text-color: #333;
@@ -534,7 +537,7 @@ body{
 }
 
 body {
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', "Montserrat", Sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
@@ -569,7 +572,6 @@ h2 {
   margin-bottom: 30px;
   font-size: 2.5rem;
   text-align: center;
-  text-transform: uppercase;
   letter-spacing: 2px;
 }
 
@@ -723,10 +725,9 @@ h2 {
 .assign-task-content {
   overflow-x: auto;
   background-color: white;
-  padding: 20px;
+  padding: 35px;
   border-radius: 5px;
-  width: 80%;
-  height: 85%;
+  max-height: 85%;
   max-width: 500px;
 }
 
@@ -897,7 +898,7 @@ h2 {
   padding: 10px;
   background-color: #f7f9fc;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.336);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.336);
 }
 
 .profile-title {
@@ -1085,4 +1086,73 @@ input.profile-item-value {
 .performance-stats p {
   font-size: 18px;
   font-weight: bold;
+}
+
+
+
+/* ---------Attendance.css---------------- */
+
+
+
+.attendance-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.attendance-empty {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+}
+
+.attendance-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.attendance-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attendance-item.present {
+  border-left: 5px solid #4caf50; 
+  background-color: #e8f5e9; 
+}
+
+.attendance-item.absent {
+  border-left: 5px solid #f44336; 
+  background-color: #ffebee; 
+}
+
+.attendance-date, .attendance-login-time, .attendance-status {
+  margin-bottom: 5px;
+}
+
+.attendance-status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.attendance-loading, .attendance-error {
+  text-align: center;
+  font-size: 18px;
 }

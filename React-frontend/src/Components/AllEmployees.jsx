@@ -9,6 +9,8 @@ const AllEmployees = () => {
       .then((data) => setEmployees(data))
       .catch((error) => console.error('Error fetching employees:', error));
   }, []);
+  console.log(employees);
+  
 
   return (
     <div className="main-page">

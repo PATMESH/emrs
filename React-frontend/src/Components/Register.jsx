@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import companyLogo from './tejas.png';
 
 const Register = ({ setAuth , setIsRegister }) => {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ const Register = ({ setAuth , setIsRegister }) => {
   const [reportsTo, setReportsTo] = useState("");
   const [employees, setEmployees] = useState([]);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     fetch("http://localhost:8080/employees/all")
@@ -62,7 +64,9 @@ const Register = ({ setAuth , setIsRegister }) => {
         console.log("Employee registered successfully!");
         setIsRegister(false);
       } else {
-        console.error("Failed to register employee");
+        const errorMessage = await response.text();
+        console.error("Failed to register employee:", errorMessage);
+        setError(errorMessage);
       }
     } catch (error) {
       console.error("Error registering employee:", error);
@@ -72,6 +76,9 @@ const Register = ({ setAuth , setIsRegister }) => {
   return (
     <div className="reg-body">
     <div className="register-container">
+      <div className="logo">
+        <img src={companyLogo} alt="Company Logo"/>
+      </div>
       <h3>Register New Employee</h3>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="form-group">
@@ -167,6 +174,8 @@ const Register = ({ setAuth , setIsRegister }) => {
             ))}
           </select>
         </div>
+        
+        {error && <div className="error">{error}</div>}
 
         <button
           type="submit"

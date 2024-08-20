@@ -4,6 +4,8 @@ import TaskPage from './TaskPage';
 import ProfilePage from './ProfilePage'; 
 import companyLogo from './tejas.png';
 import lbtn from './logout.png';
+import icon from './icon.png';
+import { Attendance } from './Attendance';
 
 const Notification = ({ message }) => (
   <div className="notification">
@@ -36,20 +38,13 @@ const MainPage = () => {
     window.location.reload();
   };
 
-  const handleLogoClick = () => {
-    if(currentView==='profile'){
-      setCurrentView("task");
-    }else{
-      setCurrentView("profile")
-    }
-  };
 
   return (
     <div className="main-container">
       {showNotification && <Notification message={`Welcome, ${userName}!`} />}
       <nav className="navbar">
         <div className="nav-brand">
-          <div className="logo" onClick={handleLogoClick}>
+          <div className="logo" >
             <img src={companyLogo} alt="Company Logo" />
           </div>
           <h1 className="nav-heading">Employee Maintenance & Reporting System</h1>
@@ -62,10 +57,23 @@ const MainPage = () => {
             Tasks
           </li>
           <li
+            className={currentView === 'Attendance' ? 'active' : ''}
+            onClick={() => setCurrentView('Attendance')}
+          >
+            Attendance
+          </li>
+          <li
             className={currentView === 'allEmployees' ? 'active' : ''}
             onClick={() => setCurrentView('allEmployees')}
           >
             Employees
+          </li>
+          <li
+            className={currentView === 'profile' ? 'active' : ''}
+            onClick={()=>setCurrentView("profile")}
+            style={{display:'flex',justifyContent:'center',alignContent:'center'}}
+          >
+            <img src={icon} alt='icon' width={30} style={{backgroundColor:'whitesmoke', borderRadius:'30px'}}></img>
           </li>
           <li className="logout-btn" onClick={handleLogout}>
             <img src={lbtn} alt="Logout" />
@@ -75,6 +83,7 @@ const MainPage = () => {
       <div className="content">
         {currentView === 'task' && <TaskPage />}
         {currentView === 'allEmployees' && <AllEmployees />}
+        {currentView === 'Attendance' && <Attendance />}
         {currentView === 'profile' && <ProfilePage />}
       </div>
     </div>

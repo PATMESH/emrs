@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import companyLogo from './tejas.png';
 
 const Login = ({ setAuth, setIsRegister }) => {
   const [email, setEmail] = useState("");
@@ -64,6 +65,9 @@ const Login = ({ setAuth, setIsRegister }) => {
 
     <div className="login-home">
     <div className="login-container">
+      <div className="logo">
+        <img src={companyLogo} alt="Company Logo"/>
+      </div>
       <h3>Login</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
