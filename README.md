@@ -39,7 +39,6 @@ This project is an Employee Maintenance and Reporting System built with **ReactJ
 
 ## Project Structure
 
-```plaintext
 employee-maintenance-reporting-system/
 ├── EMS-Backend/
 │   ├── src/main/java/com/example/emrs/ (Spring Boot application code)
